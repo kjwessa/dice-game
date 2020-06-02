@@ -1,2 +1,1 @@
-# pig-game
-Practicing DOM manipulation
+# javascript-course

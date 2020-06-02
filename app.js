@@ -8,3 +8,27 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
+
+var scores, roundScore, activePlayer, dice;
+
+scores = [0, 0];
+roundScore = 0;
+activePlayer = 0;
+//to roll a dice, we use the math operator. The .floor makes sure it is a whole number, and the Math.random generates a random number (in this case, from 0-5). The + 1 corrects this, making it generate a random number from 1-6.
+dice = Math.floor(Math.random() * 6) + 1;
+console.log(dice);
+
+//document gives us access to the DOM, and querySelector allows us to select items the same way we select things in CSS. We want to update the number on the player within the index.html file, so we grab the ID.
+
+//This is called a setter, because it sets a value.
+document.querySelector('#current-' + activePlayer).textContent = dice;
+
+//This is called a getter, because it gathers the information.
+var x = document.querySelector('#score-0').textContent;
+console.log(x);
+
+//By using innerHTML, we override the limitations of textContent, and can actually update the HTML.
+document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
+
+//We can also use the Query Selector to change CSS. In this case, we want the dice to disappear before anyone rolls the dice.
+document.querySelector('.dice').style.display = 'none';
