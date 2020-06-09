@@ -9,26 +9,52 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 
 scores = [0, 0];
 roundScore = 0;
 activePlayer = 0;
-//to roll a dice, we use the math operator. The .floor makes sure it is a whole number, and the Math.random generates a random number (in this case, from 0-5). The + 1 corrects this, making it generate a random number from 1-6.
-dice = Math.floor(Math.random() * 6) + 1;
-console.log(dice);
-
-//document gives us access to the DOM, and querySelector allows us to select items the same way we select things in CSS. We want to update the number on the player within the index.html file, so we grab the ID.
-
-//This is called a setter, because it sets a value.
-document.querySelector('#current-' + activePlayer).textContent = dice;
-
-//This is called a getter, because it gathers the information.
-var x = document.querySelector('#score-0').textContent;
-console.log(x);
-
-//By using innerHTML, we override the limitations of textContent, and can actually update the HTML.
-document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
 
 //We can also use the Query Selector to change CSS. In this case, we want the dice to disappear before anyone rolls the dice.
 document.querySelector('.dice').style.display = 'none';
+
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+
+//To add an event listener, we simply type "addEventListener", and then we add the particular event in the parthenses. A callback function is "btn", because it calls the function for us. We also have the option of creating a function after 'click' and writing the function within the callback.
+
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    //1. Need a random number
+    //to roll a dice, we use the math operator. The .floor makes sure it is a whole number, and the Math.random generates a random number (in this case, from 0-5). The + 1 corrects this, making it generate a random number from 1-6.
+    var dice = Math.floor(Math.random() * 6) + 1;
+
+    //2. display the result
+    var diceDOM = document.querySelector('.dice');
+    diceDOM.style.display = 'block';
+    diceDOM.src = 'dice-' + dice + '.png';
+
+
+    //3. Update the round score if the rolled number was not a 1
+});
+
+
+
+//INSTRUCTIONS
+
+/* First Things */
+
+//document gives us access to the DOM, and querySelector allows us to select items the same way we select things in CSS. We want to update the number on the player within the index.html file, so we grab the ID.
+
+
+//This is called a setter, because it sets a value.
+//document.querySelector('#current-' + activePlayer).textContent = dice;
+
+//This is called a getter, because it gathers the information.
+//var x = document.querySelector('#score-0').textContent;
+//console.log(x);
+
+//By using innerHTML, we override the limitations of textContent, and can actually update the HTML.
+//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
