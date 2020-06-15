@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, gamePlaying;
 
 //Starting the game exists as a function
 init();
@@ -17,7 +17,8 @@ init();
 //To add an event listener, we simply type "addEventListener", and then we add the particular event in the parthenses. A callback function is "btn", because it calls the function for us. We also have the option of creating a function after 'click' and writing the function within the callback.
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
-    //1. Need a random number
+    if(gamePlaying) {
+//1. Need a random number
     //to roll a dice, we use the math operator. The .floor makes sure it is a whole number, and the Math.random generates a random number (in this case, from 0-5). The + 1 corrects this, making it generate a random number from 1-6.
     var dice = Math.floor(Math.random() * 6) + 1;
 
@@ -32,9 +33,13 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         roundScore += dice;
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     } else {nextPlayer();}
+    }
+
+    
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
+    if (gamePlaying) {
     //This is meant to add the current score to the global score
     scores[activePlayer] += roundScore;
 
@@ -47,9 +52,10 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         document.querySelector('dice').style.display = 'none';
         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
         document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
-
+        gamePlaying = false;
     } else {
         nextPlayer();
+    }
     }
     
 });
