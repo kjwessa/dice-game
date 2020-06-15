@@ -14,9 +14,6 @@ var scores, roundScore, activePlayer;
 //Starting the game exists as a function
 init();
 
-
-
-
 //To add an event listener, we simply type "addEventListener", and then we add the particular event in the parthenses. A callback function is "btn", because it calls the function for us. We also have the option of creating a function after 'click' and writing the function within the callback.
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
@@ -70,7 +67,7 @@ document.querySelector('.player-1-panel').classList.toggle('active');
 document.querySelector('.dice').style.display = 'none';
 //document.querySelector('.player-0-panel').classList.remove('active');
 //document.querySelector('.player-1-panel').classList.add('active');
-}
+};
 
 document.querySelector('.btn-new').addEventListener('click', init
 );
@@ -89,7 +86,14 @@ function init() {
     document.getElementById('current-1').textContent = '0';
     document.getElementById('name-0').textContent = 'Player 1';
     document.getElementById('name-1').textContent = 'Player 2';
-}
+    
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
+};
 
 //INSTRUCTIONS
 
