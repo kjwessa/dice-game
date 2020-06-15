@@ -11,17 +11,10 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0, 0];
-roundScore = 0;
-activePlayer = 0;
+//Starting the game exists as a function
+init();
 
-//We can also use the Query Selector to change CSS. In this case, we want the dice to disappear before anyone rolls the dice.
-document.querySelector('.dice').style.display = 'none';
 
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
 
 
 //To add an event listener, we simply type "addEventListener", and then we add the particular event in the parthenses. A callback function is "btn", because it calls the function for us. We also have the option of creating a function after 'click' and writing the function within the callback.
@@ -61,9 +54,6 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     } else {
         nextPlayer();
     }
-
-    // Next Player
-    nextPlayer();
     
 });
 
@@ -80,6 +70,25 @@ document.querySelector('.player-1-panel').classList.toggle('active');
 document.querySelector('.dice').style.display = 'none';
 //document.querySelector('.player-0-panel').classList.remove('active');
 //document.querySelector('.player-1-panel').classList.add('active');
+}
+
+document.querySelector('.btn-new').addEventListener('click', init
+);
+
+function init() {
+    scores = [0, 0];
+    activePlayer = 0;
+    roundScore = 0;
+
+    //We can also use the Query Selector to change CSS. In this case, we want the dice to disappear before anyone rolls the dice.
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
 }
 
 //INSTRUCTIONS
